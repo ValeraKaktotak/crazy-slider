@@ -332,3 +332,19 @@ header{
 		}
 	}
 }
+
+@media screen and (max-width: 678px){
+	.carousel{
+		.list{
+			.item{
+				.content{
+					padding-right: 0;
+
+					.title{
+						font-size: 30px;
+					}
+				}
+			}
+		}
+	}
+}
