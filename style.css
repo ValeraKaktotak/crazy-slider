@@ -1,5 +1,33 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@keyframes showContent{
+	to{
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(0);
+	}
+}
+@keyframes showimage{
+	to{
+		width: 100%;
+		height: 100%;
+		left: 0;
+		bottom: 0;
+		border-radius: 0;
+	}
+}
+@keyframes showThumbnail{
+	to{
+		width: 150px;
+	}
+}
+@keyframes transformThumbnail{
+	to{
+		transform: translateX(0);
+	}
+}
+
 body{
 	font-family: Poppins;
 	background-color: #000;
@@ -44,6 +72,7 @@ header{
 				height: 100%;
 				object-fit: cover;
 			}
+
 			.content{
 				position:absolute;
 				width: 1140px;
@@ -89,6 +118,36 @@ header{
 					}
 				}
 			}
+
+			&:nth-child(1){
+				z-index: 1;
+			}
+			&:nth-child(1){
+				.author,
+				.title,
+				.topic,
+				.des,
+				.buttons{
+					transform: translateY(50px);
+					filter: blur(20px);
+					opacity: 0;
+					animation: showContent 1s linear forwards
+				}
+
+
+				.title{
+					animation-delay: 1.2s;
+				}
+				.topic{
+					animation-delay: 1.4s;
+				}
+				.des{
+					animation-delay: 1.6s;
+				}
+				.buttons{
+					animation-delay: 1.8s;
+				}
+			}
 		}
 	}
 }
@@ -122,6 +181,70 @@ header{
 
 			.title{
 				font-weight: bold;
+			}
+		}
+	}
+}
+
+/*arrows*/
+.arrows{
+	position:absolute;
+	top: 80%;
+	right:52%;
+	width: 300px;
+	max-width: 30%;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	z-index: 100;
+
+	button{
+		width:40px;
+		height: 40px;
+		background-color: #eee4;
+		opacity: 0.9;
+		border-radius: 50%;
+		border: none;
+		font-family: monospace;
+		color: #fff;
+		font-weight: bold;
+		font-size: large;
+		transition: .5s;
+
+		&:hover{
+			background-color: #eee;
+			color: #555;
+		}
+	}
+}
+
+/*effect next click*/
+.carousel{
+	&.next{
+		.list{
+			.item{
+				&:nth-child(1){
+					img{
+						width:150px;
+						height:220px;
+						position: absolute;
+						left: 50%;
+						bottom: 50px;
+						border-radius: 20px;
+						animation: showimage 0.5s linear 1 forwards;
+					}
+				}
+			}
+		}
+		.thumbnail{
+			transform: translateX(150px);
+			animation: transformThumbnail .5s linear 1 forwards;
+			.item{
+				&:nth-last-child(1){
+					width: 0;
+					overflow:hidden;
+					animation: showThumbnail .5s linear 1 forwards;
+				}
 			}
 		}
 	}
