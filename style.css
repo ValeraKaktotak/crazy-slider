@@ -27,6 +27,27 @@
 		transform: translateX(0);
 	}
 }
+@keyframes outImage{
+	to{
+		width: 150px;
+		height: 220px;
+		border-radius: 20px;
+		left: 50%;
+		bottom: 50px;
+	}
+}
+@keyframes contentOut{
+	to{
+		transform: translateY(-150px);
+		filter: blur(20px);
+		opacity: 0;
+	}
+}
+@keyframes timeRunning{
+	to{
+		width: 0;
+	}
+}
 
 body{
 	font-family: Poppins;
@@ -246,6 +267,68 @@ header{
 					animation: showThumbnail .5s linear 1 forwards;
 				}
 			}
+		}
+	}
+}
+
+/*effect prev click*/
+.carousel{
+	&.prev{
+		.list{
+			.item{
+				&:nth-child(1){
+					width: 0;
+					overflow: hidden;
+					opacity: 0;
+					animation: showThumbnail 0.7s linear 1 forwards;
+				}
+				&:nth-child(2){
+					z-index: 111;
+
+					img{
+						position: absolute;
+						bottom:0;
+						left:0;
+						animation: outImage 0.7s linear 1 forwards;
+					}
+
+					.content{
+						.autor, .title, .topic, .des, .buttons{
+							animation: contentOut 1s linear 1 forwards;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*button*/
+.carousel{
+	&.next, &.prev{
+		.arrows{
+			button{
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+/*time*/
+.time{
+	width: 0;
+	height: 5px;
+	background-color: #f1683a;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+}
+.carousel{
+	&.next, &.prev{
+		.time{
+			width: 100%;
+			animation: timeRunning 1s linear 1 forwards;
 		}
 	}
 }
